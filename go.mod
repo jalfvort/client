@@ -1,28 +1,27 @@
-module knative.dev/client
+module github.com/jalfvort/client
 
 go 1.16
 
 require (
 	github.com/google/go-cmp v0.5.6
-	github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc // indirect
 	github.com/mitchellh/go-homedir v1.1.0
-	github.com/smartystreets/assertions v1.0.0 // indirect
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.8.1
-	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
+	golang.org/x/term v0.0.0-20210615171337-6886f2dfbf5b
 	gotest.tools/v3 v3.0.3
-	k8s.io/api v0.21.4
-	k8s.io/apiextensions-apiserver v0.21.4
-	k8s.io/apimachinery v0.21.4
-	k8s.io/cli-runtime v0.20.7
-	k8s.io/client-go v0.21.4
-	k8s.io/code-generator v0.21.4
-	knative.dev/eventing v0.25.1-0.20210827141738-ea5ed9adf51f
+	k8s.io/api v0.22.1
+	k8s.io/apiextensions-apiserver v0.22.1
+	k8s.io/apimachinery v0.22.1
+	k8s.io/cli-runtime v0.22.1
+	k8s.io/client-go v0.22.1
+	k8s.io/code-generator v0.22.1
+	knative.dev/client v0.25.0
+	knative.dev/eventing v0.25.0
 	knative.dev/hack v0.0.0-20210806075220-815cd312d65c
-	knative.dev/networking v0.0.0-20210827131537-ff7c341e0e06
-	knative.dev/pkg v0.0.0-20210827184538-2bd91f75571c
-	knative.dev/serving v0.25.1-0.20210827140938-e6a7166509e6
+	knative.dev/networking v0.0.0-20210830024827-a31c669a4bfb
+	knative.dev/pkg v0.0.0-20210830224055-82f3a9f1c5bc
+	knative.dev/serving v0.25.0
 	sigs.k8s.io/yaml v1.2.0
 )
 
