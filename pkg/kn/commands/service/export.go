@@ -36,6 +36,7 @@ import (
 	clientservingv1 "knative.dev/client/pkg/serving/v1"
 	"knative.dev/serving/pkg/apis/serving"
 	servingv1 "knative.dev/serving/pkg/apis/serving/v1"
+	clientv1 "knative.dev/serving/pkg/client/clientset/versioned/typed/serving/v1"
 )
 
 // IgnoredServiceAnnotations defines the annotation keys which should be
@@ -151,6 +152,7 @@ func exportService(cmd *cobra.Command, service *servingv1.Service, client client
 		}
 		return printer.PrintObj(svcList, cmd.OutOrStdout())
 	}
+
 	// default is export mode
 	knExport, err := exportForKNImport(cmd.Context(), service.DeepCopy(), client, withRevisions)
 	if err != nil {
@@ -289,6 +291,17 @@ func exportForKNImport(ctx context.Context, latestSvc *servingv1.Service, client
 	}
 
 	return knExport, nil
+}
+
+func ExportForDirectImport(ctx context.Context, serviceName string, client clientv1.ServingV1Interface, namespace string) (*clientv1alpha1.Export, error) {
+	service, err := client.Services(namespace).Get(ctx, serviceName, metav1.GetOptions{})
+	if err != nil {
+		return nil, err
+	}
+
+	knClient := clientservingv1.NewKnServingClient(client, namespace)
+
+	return exportForKNImport(ctx, service, knClient, true)
 }
 
 func getRevisionsToExport(ctx context.Context, latestSvc *servingv1.Service, client clientservingv1.KnServingClient) (*servingv1.RevisionList, map[string]bool, error) {
